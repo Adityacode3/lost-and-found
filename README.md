@@ -1,6 +1,8 @@
 # 🔍 Lost & Found Portal — MERN Stack
 
-A full-stack Lost and Found community portal built with MongoDB, Express.js, React (Vite), and Node.js.
+Lost & Found Portal is a full-stack web application that allows community members to report lost and found items, search for them, and connect with each other to return belongings. It is built using the MERN stack (MongoDB, Express.js, React.js, Node.js) with JWT-based authentication and Multer for image uploads.
+
+Live - https://lost-and-found-six-iota.vercel.app/login
 
 ---
 
@@ -69,24 +71,9 @@ cd frontend
 npm install
 ```
 
----
+----
 
-## 🌿 STEP 2 — Set Up MongoDB Atlas (Free Cloud DB)
-
-1. Go to **https://www.mongodb.com/atlas** and create a free account.
-2. Click **"Build a Database"** → choose **Free (M0)** → Select region closest to you.
-3. Create a database user:
-   - Username: e.g. `lnfuser`
-   - Password: e.g. `lnfpass123` (save this!)
-4. Under **Network Access**, click **"Add IP Address"** → select **"Allow Access from Anywhere"** (0.0.0.0/0).
-5. Go to **Database** → click **Connect** → **Connect your application** → Copy the connection string.
-   - It looks like: `mongodb+srv://lnfuser:<password>@cluster0.xxxxx.mongodb.net/`
-   - Replace `<password>` with your actual password.
-   - Add database name: `lostandfound` at the end → `...mongodb.net/lostandfound?retryWrites=true&w=majority`
-
----
-
-## ⚙️ STEP 3 — Configure Environment Variables
+## ⚙️ STEP 2 — Configure Environment Variables
 
 ### Backend — create `backend/.env`
 ```env
@@ -103,7 +90,7 @@ VITE_API_URL=http://localhost:5000
 
 ---
 
-## ▶️ STEP 4 — Run Locally
+## ▶️ STEP 3 — Run Locally
 
 ### Terminal 1 — Start Backend
 ```bash
@@ -125,78 +112,17 @@ Open **http://localhost:5173** in your browser.
 
 ---
 
-## 🌱 STEP 5 — Seed Sample Data (Optional)
 
-1. Open **MongoDB Compass** (download from mongodb.com/compass)
-2. Connect using your MONGO_URI
-3. Open the `lostandfound` database
-4. Open the **MongoDB Shell** (bottom left in Compass) and paste the contents of `sample-data.js`
 
-OR use mongosh in terminal:
-```bash
-mongosh "your-mongo-uri" --file sample-data.js
-```
 
----
 
-## ☁️ STEP 6 — Deploy Backend on Render (Free)
-
-1. Push your code to **GitHub** (create a new repo, push the `backend` folder).
-2. Go to **https://render.com** → Sign up with GitHub.
-3. Click **"New +"** → **"Web Service"**
-4. Connect your GitHub repo.
-5. Configure:
-   - **Name**: `lnf-backend`
-   - **Root Directory**: `backend` (if pushing the whole project)
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-   - **Instance Type**: Free
-6. Under **Environment Variables**, add:
-   ```
-   MONGO_URI    = your-mongodb-atlas-uri
-   JWT_SECRET   = your-jwt-secret
-   PORT         = 5000
-   CLIENT_URL   = https://your-frontend.vercel.app
-   ```
-   *(you'll update CLIENT_URL after deploying frontend)*
-7. Click **"Create Web Service"** — wait 2–3 minutes.
-8. Copy your backend URL: `https://lnf-backend.onrender.com`
+ 
 
 > **Note on image uploads**: Render's free tier has an ephemeral filesystem — uploaded images will be lost on redeploy. For production, use **Cloudinary** or **AWS S3**. For a college project, this is fine.
 
 ---
 
-## 🌐 STEP 7 — Deploy Frontend on Vercel
 
-1. Push your `frontend` folder to GitHub (same or separate repo).
-2. Go to **https://vercel.com** → Sign up with GitHub.
-3. Click **"New Project"** → Import your GitHub repo.
-4. Configure:
-   - **Framework Preset**: Vite
-   - **Root Directory**: `frontend` (if mono-repo)
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-5. Under **Environment Variables**, add:
-   ```
-   VITE_API_URL = https://lnf-backend.onrender.com
-   ```
-6. Click **Deploy** — wait 1–2 minutes.
-7. Your app is live at: `https://your-project.vercel.app`
-
----
-
-## 🔗 STEP 8 — Connect Frontend & Backend After Deployment
-
-1. Copy your **Vercel frontend URL** (e.g. `https://lnf-portal.vercel.app`)
-2. Go back to **Render** → your backend service → **Environment** tab
-3. Update `CLIENT_URL` to your Vercel URL:
-   ```
-   CLIENT_URL = https://lnf-portal.vercel.app
-   ```
-4. Click **Save Changes** — Render will auto-redeploy.
-5. Test your live app — register, login, post items!
-
----
 
 ## 🧪 API Routes Reference
 
